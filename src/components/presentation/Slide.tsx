@@ -4,6 +4,7 @@ import { PieChart } from '@/components/charts/PieChart';
 import { ProgressBar } from '@/components/charts/ProgressBar';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Progress } from "@/components/ui/progress"
 
 interface SlideProps {
   slide: ISlide;
@@ -144,6 +145,49 @@ export function ProgressGridSlide({
   progressData: ProgressBarData[];
   columns?: number;
 }) {
+  const getColorClasses = (color: string | undefined) => {
+    if (!color) {
+      return {
+        background: 'bg-gray-100',
+        indicator: 'bg-gray-500'
+      };
+    }
+
+    // Handle full Tailwind classes
+    if (color.startsWith('bg-')) {
+      const baseColor = color.split('-').slice(0, -1).join('-'); // Get the color without the shade
+      const shade = color.split('-').pop(); // Get the shade number
+      
+      return {
+        background: `${baseColor}-${shade}/20`, // 20% opacity version
+        indicator: color
+      };
+    }
+
+    // Fallback
+    return {
+      background: 'bg-gray-100',
+      indicator: 'bg-gray-500'
+    };
+  };
+
+  const getSizeClass = (size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl') => {
+    switch (size) {
+      case 'sm':
+        return 'h-1';
+      case 'lg':
+        return 'h-3';
+      case 'md':
+        return 'h-2';
+      case 'xl':
+        return 'h-4';
+      case '2xl':
+        return 'h-5';
+      default:
+        return 'h-2';
+    }
+  };
+
   return (
     <div className="flex flex-col h-full">
       <h2 className="text-4xl font-semibold text-gray-900 mb-8">{header}</h2>
@@ -156,15 +200,22 @@ export function ProgressGridSlide({
           'grid-cols-4': columns === 4,
         }
       )}>
-        {progressData.map((item, index) => (
-          <ProgressBar
-            key={index}
-            label={item.label}
-            value={item.value}
-            color={item.color}
-            size={item.size}
-          />
-        ))}
+        {progressData.map((item, index) => {
+          const colorClasses = getColorClasses(item.color);
+          return (
+            <div key={index} className="flex flex-col gap-2">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">{item.label}</span>
+                <span className="text-sm font-medium">{item.value}%</span>
+              </div>
+              <Progress 
+                value={item.value} 
+                className={cn("w-full", getSizeClass(item.size), colorClasses.background)}
+                indicatorClassName={colorClasses.indicator}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

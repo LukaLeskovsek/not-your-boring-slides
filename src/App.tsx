@@ -90,13 +90,11 @@ function AppContent() {
           {location.pathname === '/editor' ? (
             <>
               <i className="fi fi-rr-play text-lg"></i>
-              View Presentation
+              
             </>
           ) : (
             <>
-              <i className="fi fi-rr-edit text-lg"></i>
-              Edit Presentation
-            </>
+              <i className="fi fi-rr-edit text-lg"></i>            </>
           )}
         </Link>
       </div>

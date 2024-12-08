@@ -26,7 +26,7 @@ export function PresentationViewer() {
         backgroundImage: `linear-gradient(to bottom right, ${settings.gradientBackground.from}, ${settings.gradientBackground.to})`,
       }}
     >
-      <div className="w-[calc(100vh*16/9)] h-[calc(100vh-4rem)] max-w-[calc(100vw-4rem)] max-h-[calc((100vw-4rem)*9/16)] relative">
+      <div className="w-[calc(100vh*16/9)] h-[calc(100vh-8rem)] max-w-[calc(100vw-8rem)] max-h-[calc((100vw-8rem)*9/16)] relative">
         <div className="w-full h-full bg-white rounded-2xl shadow-lg overflow-hidden">
           <Slide key={currentSlideIndex} slide={currentSlide as ISlide} />
           <Footer />

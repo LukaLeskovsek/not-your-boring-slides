@@ -8,7 +8,7 @@ export interface ProgressBarData {
   label: string;
   value: number;
   color?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export type SlideType = 

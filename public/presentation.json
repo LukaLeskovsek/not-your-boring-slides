@@ -90,25 +90,25 @@
     {
       "id": "9",
       "type": "progress-grid",
-      "header": "Q1 Performance Metrics",
+      "header": "2024 strategic goals - Dec Check-In",
       "progressData": [
         {
-          "label": "Professional execution",
-          "value": 100,
-          "color": "bg-amber-400",
-          "size": "xl"
+          "label": "Quality Talent",
+          "value": 70,
+          "color": "bg-purple-500",
+          "size": "2xl"
         },
         {
-          "label": "Customer satisfaction",
-          "value": 92,
+          "label": "Professional Execution",
+          "value": 70,
           "color": "bg-green-500",
-          "size": "xl"
+          "size": "2xl"
         },
         {
-          "label": "Team productivity",
-          "value": 88,
+          "label": "Strategic hedge for startups",
+          "value": 30,
           "color": "bg-blue-500",
-          "size": "xl"
+          "size": "2xl"
         }
       ],
       "columns": 1
