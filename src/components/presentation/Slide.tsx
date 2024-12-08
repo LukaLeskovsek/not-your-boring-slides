@@ -14,12 +14,12 @@ interface SlideProps {
 const getFontSizeClass = (size?: string) => {
   switch (size) {
     case 'sm':
-      return { content: 'text-sm' };
+      return { content: 'text-xl' };
+    case 'md':
+      return { content: 'text-2xl' };
     case 'lg':
-      return { content: 'text-lg' };
+      return { content: 'text-3xl' };
     case 'xl':
-      return { content: 'text-4xl' };
-    case '2xl':
       return { content: 'text-5xl' };
     default: // md
       return { content: 'text-base' };

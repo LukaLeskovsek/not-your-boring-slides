@@ -46,14 +46,15 @@
       "id": "4",
       "type": "title-content",
       "header": "Key metric and observations",
-      "content": "TBD",
+      "content": "- Margin - Goal is 20%\n- Rough Year behind us\n- Aiming first to get to 0% and slowly to 20%",
       "fontSize": "xl"
     },
     {
       "id": "5",
       "type": "title-content",
       "header": "Challengees",
-      "fontSize": "md"
+      "fontSize": "lg",
+      "content": "1. Initial engagement - takes time to identify the initial-really-impactful engagement; low-price to get through the door; high-risk as there is no guarantee for longer and better margin deal\n2. Type of clients — Discovery in our old definition of offering needs to be redefined\n3. Client expectations are at an all-time high. Time to production is shorter than ever. High-quality, excellent UX/UI."
     },
     {
       "id": "6",
@@ -80,7 +81,7 @@
         }
       ],
       "columns": 1,
-      "fontSize": "lg"
+      "fontSize": "md"
     },
     {
       "id": "7",
