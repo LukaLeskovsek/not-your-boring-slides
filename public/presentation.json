@@ -21,7 +21,7 @@
       "effect": {
         "type": "flying-emoji",
         "options": {
-          "particleCount": 14,
+          "particleCount": 16,
           "emoji": "🚀🌖",
           "duration": 5.5,
           "fadeOut": 0.7
@@ -36,6 +36,17 @@
     },
     {
       "id": "3",
+      "type": "title-content",
+      "header": "Accomplishments",
+      "content": "1. Worked with 10 clients\n2. Roughly converts into 500k of revenue\n3. La Merge of tribes happened one year ago 🙌\n4. Re-Engaged w/ eEnergy and able to prolong for next stage 🚀\n5. Objectives-driven engagement model → moved away from selling FTEs"
+    },
+    {
+      "id": "4",
+      "type": "header-only",
+      "header": "Challengees"
+    },
+    {
+      "id": "5",
       "type": "progress-grid",
       "header": "2024 strategic goals - Dec Check-In",
       "progressData": [
@@ -61,7 +72,7 @@
       "columns": 1
     },
     {
-      "id": "4",
+      "id": "6",
       "type": "gif-header",
       "header": "That's a wrap!",
       "effect": {
@@ -76,17 +87,6 @@
       },
       "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3RtZnV5eWF6b3MxOHR5dWFtZmY0ajNhbzB6NGQyMm15MjhibG44ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DnMMGxEvniha7CvASq/giphy.gif",
       "altText": "To the moon"
-    },
-    {
-      "id": "5",
-      "type": "title-content",
-      "header": "Accomplishments",
-      "content": "1. Worked with 10 clients\n2. Roughly converts into 500k of revenue\n3. La Merge of tribes happened one year ago 🙌\n4. Re-Engaged w/ eEnergy and able to prolong for next stage 🚀\n5. Objectives-driven engagement model → moved away from selling FTEs"
-    },
-    {
-      "id": "6",
-      "type": "header-only",
-      "header": "Challengees"
     }
   ]
 }

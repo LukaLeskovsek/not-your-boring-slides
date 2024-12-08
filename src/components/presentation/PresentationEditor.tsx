@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,6 +9,23 @@ import { Slide } from './Slide';
 import type { ISlide, PresentationData } from '@/types/presentation';
 import { cn } from '@/lib/utils';
 import { usePresentationContext } from '@/hooks/usePresentationContext';
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+
+// Strict mode fix for react-beautiful-dnd
+const StrictModeDroppable = ({ children, ...props }: any) => {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    const animation = requestAnimationFrame(() => setEnabled(true));
+    return () => {
+      cancelAnimationFrame(animation);
+      setEnabled(false);
+    };
+  }, []);
+  if (!enabled) {
+    return null;
+  }
+  return <Droppable {...props}>{children}</Droppable>;
+};
 
 export function PresentationEditor() {
   const { data: presentationData, updatePresentation, isLoading } = usePresentationContext();
@@ -108,6 +125,26 @@ export function PresentationEditor() {
     });
   };
 
+  const handleDragEnd = (result: DropResult) => {
+    if (!result.destination || !presentationData) return;
+
+    const sourceIndex = result.source.index;
+    const destinationIndex = result.destination.index;
+
+    if (sourceIndex === destinationIndex) return;
+
+    const newSlides = Array.from(presentationData.slides);
+    const [removed] = newSlides.splice(sourceIndex, 1);
+    newSlides.splice(destinationIndex, 0, removed);
+
+    const reorderedSlides = renumberSlides(newSlides);
+    
+    updatePresentation({
+      ...presentationData,
+      slides: reorderedSlides,
+    });
+  };
+
   const selectedSlide = selectedSlideId 
     ? presentationData.slides.find(slide => slide.id === selectedSlideId)
     : null;
@@ -115,8 +152,8 @@ export function PresentationEditor() {
   return (
     <div className="h-screen flex">
       {/* Left Sidebar - Slides List & Settings */}
-      <div className="w-64 border-r bg-gray-50/50 p-4 flex flex-col">
-        <div className="space-y-4 mb-4">
+      <div className="w-64 border-r bg-gray-50/50 flex flex-col">
+        <div className="p-4 space-y-4">
           <Input
             value={presentationData.documentName}
             onChange={e => updatePresentation({ ...presentationData, documentName: e.target.value })}
@@ -127,40 +164,81 @@ export function PresentationEditor() {
           </Button>
         </div>
         
-        <ScrollArea className="flex-1">
-          <div className="space-y-2">
-            {presentationData.slides.map((slide) => (
-              <Card
-                key={slide.id}
-                className={cn(
-                  'p-3 cursor-pointer hover:bg-gray-100 transition-colors relative group',
-                  selectedSlideId === slide.id && 'ring-2 ring-primary'
-                )}
-                onClick={() => handleSlideSelect(slide.id)}
-              >
-                <div className="text-sm font-medium truncate">
-                  {slide.header || `Slide ${slide.id.slice(0, 4)}`}
-                </div>
-                <div className="text-xs text-gray-500 truncate">
-                  {slide.type}
-                </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={e => {
-                    e.stopPropagation();
-                    handleRemoveSlide(slide.id);
-                  }}
-                >
-                  <i className="fi fi-rr-trash text-red-500"></i>
-                </Button>
-              </Card>
-            ))}
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <div className="flex-1 overflow-hidden">
+            <ScrollArea className="h-full">
+              <div className="p-4">
+                <StrictModeDroppable droppableId="slides">
+                  {(provided: any) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className="space-y-2"
+                    >
+                      {presentationData.slides.map((slide, index) => (
+                        <Draggable
+                          key={slide.id}
+                          draggableId={slide.id}
+                          index={index}
+                        >
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              className={cn(
+                                'rounded-lg',
+                                snapshot.isDragging && 'ring-2 ring-primary'
+                              )}
+                            >
+                              <Card
+                                className={cn(
+                                  'p-3 cursor-pointer hover:bg-gray-100 transition-colors relative group',
+                                  selectedSlideId === slide.id && 'ring-2 ring-primary'
+                                )}
+                                onClick={() => handleSlideSelect(slide.id)}
+                              >
+                                <div className="flex items-center gap-2">
+                                  <div
+                                    {...provided.dragHandleProps}
+                                    className="text-gray-400 hover:text-gray-600 cursor-grab active:cursor-grabbing"
+                                  >
+                                    ⋮⋮
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-sm font-medium truncate">
+                                      {slide.header || `Slide ${slide.id}`}
+                                    </div>
+                                    <div className="text-xs text-gray-500 truncate">
+                                      {slide.type}
+                                    </div>
+                                  </div>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                                    onClick={e => {
+                                      e.stopPropagation();
+                                      handleRemoveSlide(slide.id);
+                                    }}
+                                  >
+                                    <i className="fi fi-rr-trash text-red-500" />
+                                  </Button>
+                                </div>
+                              </Card>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </StrictModeDroppable>
+              </div>
+            </ScrollArea>
           </div>
-        </ScrollArea>
+        </DragDropContext>
 
-        <Card className="mt-4 p-4 space-y-4">
+        <Card className="m-4 p-4 space-y-4">
           <div className="space-y-2">
             <Label>Font Size</Label>
             <Input
