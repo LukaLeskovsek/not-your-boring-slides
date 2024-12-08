@@ -1,0 +1,150 @@
+{
+  "documentName": "My Presentation",
+  "settings": {
+    "fontSize": "16px",
+    "fontFamily": "Inter, sans-serif",
+    "gradientBackground": {
+      "from": "#a5f3fc",
+      "to": "#fbcfe8"
+    },
+    "footer": {
+      "logoUrl": "/logo.svg",
+      "dateFormat": "MMM yyyy"
+    },
+    "date": "2024-03-19"
+  },
+  "slides": [
+    {
+      "type": "header-only",
+      "header": "Discovery 2024 Review",
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 15,
+          "emoji": "🚀",
+          "duration": 5,
+          "fadeOut": 0.9
+        }
+      }
+    },
+    {
+      "type": "markdown",
+      "markdown": "`# Project Overview\n\n## Key Features\n\n- **Real-time Collaboration** \n  - Multi-user editing\n  - Live preview\n  - Chat integration\n\n- **Advanced Security**\n  - End-to-end encryption\n  - Role-based access control\n  - Audit logging\n\n## Timeline\n\n1. **Phase 1**: Planning & Design\n2. **Phase 2**: Development\n3. **Phase 3**: Testing\n4. **Phase 4**: Deployment\n\n> \"Innovation is the outcome of a habit, not a random act.\"\n\n```javascript\n// Example code\nfunction calculateProgress(tasks) {\n  return tasks.filter(t => t.completed).length / tasks.length * 100;\n}\n```\n\n![Project Timeline](https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&auto=format&fit=crop&q=60)\n",
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 10,
+          "emoji": "📝",
+          "duration": 4,
+          "fadeOut": 0.7
+        }
+      }
+    },
+    {
+      "type": "title-content",
+      "header": "Agenda",
+      "content": "We're building the future of presentations.",
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 10,
+          "emoji": "✨",
+          "duration": 3,
+          "fadeOut": 0.5
+        }
+      }
+    },
+    {
+      "type": "image-only",
+      "imageUrl": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&auto=format&fit=crop&q=60",
+      "altText": "Beautiful landscape"
+    },
+    {
+      "type": "gif-only",
+      "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDkwM21vN2VsZ2U4azhubXB3aGVqdThwcmtqYms3NDlkeDJsNTVhciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kreQ1pqlSzftm/giphy.gif",
+      "altText": "Animated presentation",
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 12,
+          "emoji": "🚀",
+          "duration": 5,
+          "fadeOut": 1
+        }
+      }
+    },
+    {
+      "type": "image-header",
+      "header": "Our Beautiful World",
+      "imageUrl": "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60",
+      "altText": "Scenic mountain landscape"
+    },
+    {
+      "type": "gif-header",
+      "header": "Creativity in Motion",
+      "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzE2YzBkNjBkZWM4ZmQ5ZjM4ZjBkYzM4ZjM5ZjM4ZmQ5ZjM4ZjBkYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btQsLqXMJAPu6Na/giphy.gif",
+      "altText": "Creative animation",
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 20,
+          "emoji": "🎨",
+          "duration": 3.5,
+          "fadeOut": 0.7
+        }
+      }
+    },
+    {
+      "type": "pie-chart",
+      "header": "Market Share Distribution",
+      "chartData": [
+        { "label": "Product A", "value": 50, "color": "#3B82F6" },
+        { "label": "Product B", "value": 50, "color": "#10B981" },
+        { "label": "Others", "value": 5, "color": "#6B7280" }
+      ],
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 8,
+          "emoji": "📊",
+          "duration": 4,
+          "fadeOut": 0.6
+        }
+      }
+    },
+    {
+      "type": "progress-grid",
+      "header": "Q1 Performance Metrics",
+      "progressData": [
+        { "label": "Professional execution", "value": 75, "color": "bg-amber-400", "size": "xl" },
+        { "label": "Customer satisfaction", "value": 92, "color": "bg-green-500", "size": "lg" },
+        { "label": "Team productivity", "value": 88, "color": "bg-blue-500", "size": "md" },
+        { "label": "Innovation score", "value": 95, "color": "bg-purple-500", "size": "sm" },
+        { "label": "Market growth", "value": 82, "color": "bg-rose-500", "size": "lg" },
+        { "label": "Revenue targets", "value": 78, "color": "bg-cyan-500", "size": "xl" }
+      ],
+      "columns": 2,
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 12,
+          "emoji": "📊",
+          "duration": 4,
+          "fadeOut": 0.7
+        }
+      }
+    },
+    {
+      "type": "header-only",
+      "header": "END",
+      "effect": {
+        "type": "confetti",
+        "options": {
+          "particleCount": 80,
+          "spread": 60,
+          "colors": ["#87CEEB", "#98FB98", "#DDA0DD", "#F0E68C"]
+        }
+      }
+    }
+  ]
+} 
