@@ -42,11 +42,17 @@
     },
     {
       "id": "4",
-      "type": "header-only",
-      "header": "Challengees"
+      "type": "title-content",
+      "header": "Key metric and observations",
+      "content": "TBD"
     },
     {
       "id": "5",
+      "type": "title-content",
+      "header": "Challengees"
+    },
+    {
+      "id": "6",
       "type": "progress-grid",
       "header": "2024 strategic goals - Dec Check-In",
       "progressData": [
@@ -72,7 +78,7 @@
       "columns": 1
     },
     {
-      "id": "6",
+      "id": "7",
       "type": "gif-header",
       "header": "That's a wrap!",
       "effect": {

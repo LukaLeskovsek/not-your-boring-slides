@@ -4,6 +4,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { SlideEditor } from './SlideEditor';
 import { Slide } from './Slide';
 import type { ISlide, PresentationData } from '@/types/presentation';
@@ -30,6 +35,7 @@ const StrictModeDroppable = ({ children, ...props }: any) => {
 export function PresentationEditor() {
   const { data: presentationData, updatePresentation, isLoading } = usePresentationContext();
   const [selectedSlideId, setSelectedSlideId] = useState<string | null>(null);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -238,63 +244,83 @@ export function PresentationEditor() {
           </div>
         </DragDropContext>
 
-        <Card className="m-4 p-4 space-y-4">
-          <div className="space-y-2">
-            <Label>Font Size</Label>
-            <Input
-              value={presentationData.settings.fontSize}
-              onChange={e => handleSettingsChange('fontSize', e.target.value)}
-              placeholder="16px"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label>Font Family</Label>
-            <Input
-              value={presentationData.settings.fontFamily}
-              onChange={e => handleSettingsChange('fontFamily', e.target.value)}
-              placeholder="Inter, sans-serif"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label>Background Gradient</Label>
-            <div className="grid grid-cols-2 gap-2">
-              <Input
-                value={presentationData.settings.gradientBackground.from}
-                onChange={e => handleGradientChange('from', e.target.value)}
-                placeholder="From Color"
-              />
-              <Input
-                value={presentationData.settings.gradientBackground.to}
-                onChange={e => handleGradientChange('to', e.target.value)}
-                placeholder="To Color"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label>Footer Logo URL</Label>
-            <Input
-              value={presentationData.settings.footer.logoUrl}
-              onChange={e => handleFooterChange('logoUrl', e.target.value)}
-              placeholder="Logo URL"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label>Date Format</Label>
-            <Input
-              value={presentationData.settings.footer.dateFormat}
-              onChange={e => handleFooterChange('dateFormat', e.target.value)}
-              placeholder="MMM yyyy"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label>Presentation Date</Label>
-            <Input
-              type="date"
-              value={presentationData.settings.date}
-              onChange={e => handleSettingsChange('date', e.target.value)}
-            />
-          </div>
-        </Card>
+        <div className="p-4">
+          <Collapsible
+            open={isSettingsOpen}
+            onOpenChange={setIsSettingsOpen}
+            className="space-y-2"
+          >
+            <CollapsibleTrigger asChild>
+              <Button
+                variant="ghost"
+                className="w-full flex items-center justify-between"
+              >
+                <span>Presentation Settings</span>
+                <i className={cn(
+                  "fi fi-rr-angle-small-down transition-transform duration-200",
+                  isSettingsOpen && "rotate-180"
+                )} />
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Font Size</Label>
+                <Input
+                  value={presentationData.settings.fontSize}
+                  onChange={e => handleSettingsChange('fontSize', e.target.value)}
+                  placeholder="16px"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Font Family</Label>
+                <Input
+                  value={presentationData.settings.fontFamily}
+                  onChange={e => handleSettingsChange('fontFamily', e.target.value)}
+                  placeholder="Inter, sans-serif"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Background Gradient</Label>
+                <div className="grid grid-cols-2 gap-2">
+                  <Input
+                    value={presentationData.settings.gradientBackground.from}
+                    onChange={e => handleGradientChange('from', e.target.value)}
+                    placeholder="From Color"
+                  />
+                  <Input
+                    value={presentationData.settings.gradientBackground.to}
+                    onChange={e => handleGradientChange('to', e.target.value)}
+                    placeholder="To Color"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>Footer Logo URL</Label>
+                <Input
+                  value={presentationData.settings.footer.logoUrl}
+                  onChange={e => handleFooterChange('logoUrl', e.target.value)}
+                  placeholder="Logo URL"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Date Format</Label>
+                <Input
+                  value={presentationData.settings.footer.dateFormat}
+                  onChange={e => handleFooterChange('dateFormat', e.target.value)}
+                  placeholder="MMM yyyy"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Presentation Date</Label>
+                <Input
+                  type="date"
+                  value={presentationData.settings.date}
+                  onChange={e => handleSettingsChange('date', e.target.value)}
+                />
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
       </div>
 
       {/* Middle Section - Slide Editor */}

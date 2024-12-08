@@ -192,12 +192,12 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
                   }
                 }}
                 placeholder={`[
-  {
-    "label": "Item 1",
-    "value": 30,
-    "color": "#ff0000"
-  }
-]`}
+                    {
+                        "label": "Item 1",
+                        "value": 30,
+                        "color": "#ff0000"
+                    }
+                    ]`}
                 rows={10}
               />
             </div>
@@ -205,7 +205,16 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
 
           {editedSlide.type === 'progress-grid' && (
             <div className="space-y-4">
+              <Label>Header</Label>
+              <Input
+                value={editedSlide.header || ''}
+                onChange={e => setEditedSlide(prev => ({ ...prev, header: e.target.value }))}
+                placeholder="Enter grid header"
+              />
               <Label>Progress Data (JSON)</Label>
+              <div className="text-sm text-muted-foreground mb-2">
+                Supported colors: bg-{'{color}'}-{'{shade}'} (e.g., bg-purple-500, bg-green-500, bg-blue-500)
+              </div>
               <Textarea
                 value={editedSlide.progressDataText || JSON.stringify(editedSlide.progressData || [], null, 2)}
                 onChange={e => {
@@ -228,7 +237,13 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
   {
     "label": "Task 1",
     "value": 75,
-    "color": "#00ff00",
+    "color": "bg-purple-500",
+    "size": "md"
+  },
+  {
+    "label": "Task 2",
+    "value": 50,
+    "color": "bg-green-500",
     "size": "md"
   }
 ]`}
