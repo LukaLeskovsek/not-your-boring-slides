@@ -36,7 +36,8 @@ export interface SlideEffect {
 }
 
 export interface ISlide {
-  type: 'header-only' | 'title-content' | 'image-only' | 'gif-only' | 'image-header' | 'gif-header' | 'pie-chart' | 'progress-grid' | 'markdown';
+  id: string;
+  type: SlideType;
   header?: string;
   content?: string;
   imageUrl?: string;
@@ -78,10 +79,5 @@ export type PresentationData = {
     };
     date: string;
   };
-  slides: Array<{
-    type: string;
-    header?: string;
-    effect?: SlideEffect;
-    [key: string]: any;
-  }>;
+  slides: Array<ISlide>;
 };

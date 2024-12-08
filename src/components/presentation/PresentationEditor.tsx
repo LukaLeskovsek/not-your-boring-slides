@@ -4,16 +4,15 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { SlideEditor } from './SlideEditor';
-import type { ISlide } from '@/types/presentation';
+import { Slide } from './Slide';
+import type { ISlide, PresentationData } from '@/types/presentation';
 import { cn } from '@/lib/utils';
 import { usePresentationContext } from '@/hooks/usePresentationContext';
 
 export function PresentationEditor() {
   const { data: presentationData, updatePresentation, isLoading } = usePresentationContext();
-  const [selectedSlideIndex, setSelectedSlideIndex] = useState<number | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [selectedSlideId, setSelectedSlideId] = useState<string | null>(null);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -23,27 +22,26 @@ export function PresentationEditor() {
     return <div>No presentation data available</div>;
   }
 
-  const handleSlideSelect = (index: number) => {
-    setSelectedSlideIndex(index);
-    setIsEditing(true);
+  const handleSlideSelect = (id: string) => {
+    setSelectedSlideId(id);
   };
 
   const handleSlideUpdate = (updatedSlide: ISlide) => {
-    if (selectedSlideIndex === null) return;
+    if (!selectedSlideId) return;
 
-    const updatedSlides = presentationData.slides.map((slide, index) =>
-      index === selectedSlideIndex ? updatedSlide : slide
+    const updatedSlides = presentationData.slides.map(slide =>
+      slide.id === selectedSlideId ? updatedSlide : slide
     );
 
     updatePresentation({
       ...presentationData,
       slides: updatedSlides,
     });
-    setIsEditing(false);
   };
 
   const handleAddSlide = () => {
     const newSlide: ISlide = {
+      id: crypto.randomUUID(),
       type: 'header-only',
       header: 'New Slide',
     };
@@ -52,13 +50,17 @@ export function PresentationEditor() {
       ...presentationData,
       slides: [...presentationData.slides, newSlide],
     });
+    setSelectedSlideId(newSlide.id);
   };
 
-  const handleRemoveSlide = (index: number) => {
+  const handleRemoveSlide = (id: string) => {
     updatePresentation({
       ...presentationData,
-      slides: presentationData.slides.filter((_, i) => i !== index),
+      slides: presentationData.slides.filter(slide => slide.id !== id),
     });
+    if (selectedSlideId === id) {
+      setSelectedSlideId(null);
+    }
   };
 
   const handleSettingsChange = (field: keyof typeof presentationData.settings, value: string) => {
@@ -97,13 +99,13 @@ export function PresentationEditor() {
     });
   };
 
-  const handleSavePresentation = () => {
-    updatePresentation(presentationData);
-  };
+  const selectedSlide = selectedSlideId 
+    ? presentationData.slides.find(slide => slide.id === selectedSlideId)
+    : null;
 
   return (
     <div className="h-screen flex">
-      {/* Left Sidebar - Slides List */}
+      {/* Left Sidebar - Slides List & Settings */}
       <div className="w-64 border-r bg-gray-50/50 p-4 flex flex-col">
         <div className="space-y-4 mb-4">
           <Input
@@ -118,17 +120,17 @@ export function PresentationEditor() {
         
         <ScrollArea className="flex-1">
           <div className="space-y-2">
-            {presentationData.slides.map((slide, index) => (
+            {presentationData.slides.map((slide) => (
               <Card
-                key={index}
+                key={slide.id}
                 className={cn(
                   'p-3 cursor-pointer hover:bg-gray-100 transition-colors relative group',
-                  selectedSlideIndex === index && 'ring-2 ring-primary'
+                  selectedSlideId === slide.id && 'ring-2 ring-primary'
                 )}
-                onClick={() => handleSlideSelect(index)}
+                onClick={() => handleSlideSelect(slide.id)}
               >
                 <div className="text-sm font-medium truncate">
-                  {slide.header || `Slide ${index + 1}`}
+                  {slide.header || `Slide ${slide.id.slice(0, 4)}`}
                 </div>
                 <div className="text-xs text-gray-500 truncate">
                   {slide.type}
@@ -139,7 +141,7 @@ export function PresentationEditor() {
                   className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
                   onClick={e => {
                     e.stopPropagation();
-                    handleRemoveSlide(index);
+                    handleRemoveSlide(slide.id);
                   }}
                 >
                   <i className="fi fi-rr-trash text-red-500"></i>
@@ -206,26 +208,39 @@ export function PresentationEditor() {
             />
           </div>
         </Card>
-
-        <Button onClick={handleSavePresentation} className="mt-4 w-full">
-          Save Presentation
-        </Button>
       </div>
 
-      {/* Right Side - Slide Editor */}
-      <Sheet open={isEditing} onOpenChange={setIsEditing}>
-        <SheetContent side="right" className="w-[600px] sm:w-[540px]">
-          <SheetHeader>
-            <SheetTitle>Edit Slide</SheetTitle>
-          </SheetHeader>
-          {selectedSlideIndex !== null && (
-            <SlideEditor
-              slide={presentationData.slides[selectedSlideIndex] as ISlide}
-              onSave={handleSlideUpdate}
-            />
-          )}
-        </SheetContent>
-      </Sheet>
+      {/* Middle Section - Slide Editor */}
+      <div className="flex-1 border-r">
+        {selectedSlide ? (
+          <SlideEditor
+            slide={selectedSlide}
+            onSave={handleSlideUpdate}
+          />
+        ) : (
+          <div className="h-full flex items-center justify-center text-gray-500">
+            Select a slide to edit
+          </div>
+        )}
+      </div>
+
+      {/* Right Section - Preview */}
+      <div className="w-[calc(100vh*16/9*0.4)] bg-gray-50/50">
+        {selectedSlide ? (
+          <div className="p-4 h-full flex items-center justify-center">
+            <div className="w-full aspect-video bg-white rounded-lg shadow-lg overflow-hidden">
+              <Slide
+                slide={selectedSlide}
+                preview={true}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="h-full flex items-center justify-center text-gray-500">
+            Select a slide to preview
+          </div>
+        )}
+      </div>
     </div>
   );
 } 

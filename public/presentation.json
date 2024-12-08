@@ -15,51 +15,39 @@
   },
   "slides": [
     {
+      "id": "1",
       "type": "header-only",
-      "header": "Discovery 2024 Review!",
+      "header": "END",
       "effect": {
-        "type": "flying-emoji",
+        "type": "confetti",
         "options": {
-          "particleCount": 20,
+          "particleCount": 130,
           "emoji": "🚀",
           "duration": 6.5,
-          "fadeOut": 0.9
+          "fadeOut": 0.9,
+          "spread": 90
         }
       }
     },
     {
+      "id": "2",
       "type": "markdown",
-      "markdown": "`# Project Overview\n\n## Key Features\n\n- **Real-time Collaboration** \n  - Multi-user editing\n  - Live preview\n  - Chat integration\n\n- **Advanced Security**\n  - End-to-end encryption\n  - Role-based access control\n  - Audit logging\n\n## Timeline\n\n1. **Phase 1**: Planning & Design\n2. **Phase 2**: Development\n3. **Phase 3**: Testing\n4. **Phase 4**: Deployment\n\n> \"Innovation is the outcome of a habit, not a random act.\"\n\n```javascript\n// Example code\nfunction calculateProgress(tasks) {\n  return tasks.filter(t => t.completed).length / tasks.length * 100;\n}\n```\n\n![Project Timeline](https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&auto=format&fit=crop&q=60)\n",
-      "effect": {
-        "type": "flying-emoji",
-        "options": {
-          "particleCount": 10,
-          "emoji": "📝",
-          "duration": 4,
-          "fadeOut": 0.7
-        }
-      }
+      "markdown": "`# Project Overview\n\n## Key Features\n\n- **Real-time Collaboration** \n  - Multi-user editing\n  - Live preview\n  - Chat integration\n\n- **Advanced Security**\n  - End-to-end encryption\n  - Role-based access control\n  - Audit logging\n\n## Timeline\n\n1. **Phase 1**: Planning & Design\n2. **Phase 2**: Development\n3. **Phase 3**: Testing\n4. **Phase 4**: Deployment\n\n> \"Innovation is the outcome of a habit, not a random act.\"\n\n```javascript\n// Example code\nfunction calculateProgress(tasks) {\n  return tasks.filter(t => t.completed).length / tasks.length * 100;\n}\n```\n\n![Project Timeline](https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&auto=format&fit=crop&q=60)\n"
     },
     {
+      "id": "3",
       "type": "title-content",
       "header": "Agenda",
-      "content": "We're building the future of presentations.",
-      "effect": {
-        "type": "flying-emoji",
-        "options": {
-          "particleCount": 10,
-          "emoji": "✨",
-          "duration": 3,
-          "fadeOut": 0.5
-        }
-      }
+      "content": "We're building the future!"
     },
     {
+      "id": "4",
       "type": "image-only",
       "imageUrl": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&auto=format&fit=crop&q=60",
       "altText": "Beautiful landscape"
     },
     {
+      "id": "5",
       "type": "gif-only",
       "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDkwM21vN2VsZ2U4azhubXB3aGVqdThwcmtqYms3NDlkeDJsNTVhciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kreQ1pqlSzftm/giphy.gif",
       "altText": "Animated presentation",
@@ -74,27 +62,21 @@
       }
     },
     {
+      "id": "6",
       "type": "image-header",
       "header": "Our Beautiful World",
       "imageUrl": "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60",
       "altText": "Scenic mountain landscape"
     },
     {
+      "id": "7",
       "type": "gif-header",
       "header": "Creativity in Motion",
       "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzE2YzBkNjBkZWM4ZmQ5ZjM4ZjBkYzM4ZjM5ZjM4ZmQ5ZjM4ZjBkYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btQsLqXMJAPu6Na/giphy.gif",
-      "altText": "Creative animation",
-      "effect": {
-        "type": "flying-emoji",
-        "options": {
-          "particleCount": 20,
-          "emoji": "🎨",
-          "duration": 3.5,
-          "fadeOut": 0.7
-        }
-      }
+      "altText": "Creative animation"
     },
     {
+      "id": "8",
       "type": "pie-chart",
       "header": "Market Share Distribution",
       "chartData": [
@@ -113,18 +95,10 @@
           "value": 5,
           "color": "#6B7280"
         }
-      ],
-      "effect": {
-        "type": "flying-emoji",
-        "options": {
-          "particleCount": 8,
-          "emoji": "📊",
-          "duration": 4,
-          "fadeOut": 0.6
-        }
-      }
+      ]
     },
     {
+      "id": "9",
       "type": "progress-grid",
       "header": "Q1 Performance Metrics",
       "progressData": [
@@ -165,31 +139,20 @@
           "size": "xl"
         }
       ],
-      "columns": 2,
-      "effect": {
-        "type": "flying-emoji",
-        "options": {
-          "particleCount": 12,
-          "emoji": "📊",
-          "duration": 4,
-          "fadeOut": 0.7
-        }
-      }
+      "columns": 2
     },
     {
+      "id": "1",
       "type": "header-only",
       "header": "END",
       "effect": {
         "type": "confetti",
         "options": {
-          "particleCount": 80,
-          "spread": 60,
-          "colors": [
-            "#87CEEB",
-            "#98FB98",
-            "#DDA0DD",
-            "#F0E68C"
-          ]
+          "particleCount": 130,
+          "emoji": "🚀",
+          "duration": 6.5,
+          "fadeOut": 0.9,
+          "spread": 90
         }
       }
     }

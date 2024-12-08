@@ -1,12 +1,13 @@
 import { cn } from '@/lib/utils';
-import type { ISlide as SlideType, PieChartData, ProgressBarData } from '@/types/presentation';
+import type { ISlide as SlideType, PieChartData, ProgressBarData, ISlide } from '@/types/presentation';
 import { PieChart } from '@/components/charts/PieChart';
 import { ProgressBar } from '@/components/charts/ProgressBar';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 interface SlideProps {
-  slide: SlideType;
+  slide: ISlide;
+  preview?: boolean;
   className?: string;
 }
 
