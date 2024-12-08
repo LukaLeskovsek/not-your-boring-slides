@@ -48,6 +48,8 @@ export interface ISlide {
   progressData?: ProgressBarData[];
   columns?: number;
   markdown?: string;
+  chartDataText?: string;
+  progressDataText?: string;
 }
 
 export interface PresentationSettings {

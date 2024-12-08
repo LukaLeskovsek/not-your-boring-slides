@@ -17,17 +17,7 @@
     {
       "id": "1",
       "type": "header-only",
-      "header": "END",
-      "effect": {
-        "type": "confetti",
-        "options": {
-          "particleCount": 130,
-          "emoji": "🚀",
-          "duration": 6.5,
-          "fadeOut": 0.9,
-          "spread": 90
-        }
-      }
+      "header": "Discovery EOY Review"
     },
     {
       "id": "2",
@@ -91,9 +81,9 @@
           "color": "#10B981"
         },
         {
-          "label": "Others",
+          "label": "Othersrer",
           "value": 5,
-          "color": "#6B7280"
+          "crereolor": "#6B7280"
         }
       ]
     },
@@ -104,7 +94,7 @@
       "progressData": [
         {
           "label": "Professional execution",
-          "value": 75,
+          "value": 100,
           "color": "bg-amber-400",
           "size": "xl"
         },
@@ -112,47 +102,29 @@
           "label": "Customer satisfaction",
           "value": 92,
           "color": "bg-green-500",
-          "size": "lg"
+          "size": "xl"
         },
         {
           "label": "Team productivity",
           "value": 88,
           "color": "bg-blue-500",
-          "size": "md"
-        },
-        {
-          "label": "Innovation score",
-          "value": 95,
-          "color": "bg-purple-500",
-          "size": "sm"
-        },
-        {
-          "label": "Market growth",
-          "value": 82,
-          "color": "bg-rose-500",
-          "size": "lg"
-        },
-        {
-          "label": "Revenue targets",
-          "value": 78,
-          "color": "bg-cyan-500",
           "size": "xl"
         }
       ],
-      "columns": 2
+      "columns": 1
     },
     {
-      "id": "1",
+      "id": "10",
       "type": "header-only",
-      "header": "END",
+      "header": "END!",
       "effect": {
         "type": "confetti",
         "options": {
-          "particleCount": 130,
-          "emoji": "🚀",
-          "duration": 6.5,
-          "fadeOut": 0.9,
-          "spread": 90
+          "particleCount": 150,
+          "emoji": "✨",
+          "duration": 3,
+          "fadeOut": 0.7,
+          "spread": 100
         }
       }
     }

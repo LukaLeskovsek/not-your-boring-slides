@@ -170,6 +170,73 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
             </div>
           )}
 
+          {editedSlide.type === 'pie-chart' && (
+            <div className="space-y-4">
+              <Label>Chart Data (JSON)</Label>
+              <Textarea
+                value={editedSlide.chartDataText || JSON.stringify(editedSlide.chartData || [], null, 2)}
+                onChange={e => {
+                  const text = e.target.value;
+                  setEditedSlide(prev => ({ ...prev, chartDataText: text }));
+                }}
+                onBlur={e => {
+                  try {
+                    const chartData = JSON.parse(e.target.value);
+                    setEditedSlide(prev => ({ 
+                      ...prev, 
+                      chartData,
+                      chartDataText: undefined // Clear the temporary text
+                    }));
+                  } catch (err) {
+                    // Keep the invalid text in chartDataText
+                  }
+                }}
+                placeholder={`[
+  {
+    "label": "Item 1",
+    "value": 30,
+    "color": "#ff0000"
+  }
+]`}
+                rows={10}
+              />
+            </div>
+          )}
+
+          {editedSlide.type === 'progress-grid' && (
+            <div className="space-y-4">
+              <Label>Progress Data (JSON)</Label>
+              <Textarea
+                value={editedSlide.progressDataText || JSON.stringify(editedSlide.progressData || [], null, 2)}
+                onChange={e => {
+                  const text = e.target.value;
+                  setEditedSlide(prev => ({ ...prev, progressDataText: text }));
+                }}
+                onBlur={e => {
+                  try {
+                    const progressData = JSON.parse(e.target.value);
+                    setEditedSlide(prev => ({ 
+                      ...prev, 
+                      progressData,
+                      progressDataText: undefined // Clear the temporary text
+                    }));
+                  } catch (err) {
+                    // Keep the invalid text in progressDataText
+                  }
+                }}
+                placeholder={`[
+  {
+    "label": "Task 1",
+    "value": 75,
+    "color": "#00ff00",
+    "size": "md"
+  }
+]`}
+                rows={10}
+              />
+            </div>
+          )}
+
           <Card className="p-4">
             <div className="flex items-center justify-between">
               <Label>Enable Slide Effect</Label>
