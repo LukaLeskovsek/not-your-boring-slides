@@ -50,6 +50,7 @@ export interface ISlide {
   markdown?: string;
   chartDataText?: string;
   progressDataText?: string;
+  fontSize?: string;
 }
 
 export interface PresentationSettings {

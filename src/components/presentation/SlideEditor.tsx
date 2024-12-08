@@ -27,6 +27,23 @@ const SLIDE_TYPES = [
   { value: 'markdown', label: 'Markdown' },
 ];
 
+const FontSizeSelector = ({ value, onValueChange }: { value: string; onValueChange: (value: string) => void }) => (
+  <div className="space-y-4">
+    <Label>Content Font Size</Label>
+    <Select value={value} onValueChange={onValueChange}>
+      <SelectTrigger>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="sm">Small</SelectItem>
+        <SelectItem value="md">Medium</SelectItem>
+        <SelectItem value="lg">Large</SelectItem>
+        <SelectItem value="xl">Extra Large</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+);
+
 export function SlideEditor({ slide, onSave }: SlideEditorProps) {
   const [editedSlide, setEditedSlide] = useState<ISlide>(slide);
   const [showEffectOptions, setShowEffectOptions] = useState(!!slide.effect);
@@ -101,7 +118,9 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
           {(editedSlide.type === 'header-only' || 
             editedSlide.type === 'title-content' || 
             editedSlide.type === 'image-header' || 
-            editedSlide.type === 'gif-header') && (
+            editedSlide.type === 'gif-header' ||
+            editedSlide.type === 'pie-chart' ||
+            editedSlide.type === 'progress-grid') && (
             <div className="space-y-4">
               <Label>Header</Label>
               <Input
@@ -112,6 +131,11 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
             </div>
           )}
 
+          <FontSizeSelector 
+            value={editedSlide.fontSize || 'md'} 
+            onValueChange={(fontSize) => setEditedSlide(prev => ({ ...prev, fontSize }))}
+          />
+
           {editedSlide.type === 'title-content' && (
             <div className="space-y-4">
               <Label>Content</Label>
@@ -120,6 +144,94 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
                 onChange={e => setEditedSlide(prev => ({ ...prev, content: e.target.value }))}
                 placeholder="Enter slide content"
                 rows={5}
+              />
+            </div>
+          )}
+
+          {editedSlide.type === 'markdown' && (
+            <div className="space-y-4">
+              <Label>Markdown Content</Label>
+              <Textarea
+                value={editedSlide.markdown || ''}
+                onChange={e => setEditedSlide(prev => ({ ...prev, markdown: e.target.value }))}
+                placeholder="Enter markdown content"
+                rows={10}
+              />
+            </div>
+          )}
+
+          {editedSlide.type === 'pie-chart' && (
+            <div className="space-y-4">
+              <Label>Chart Data (JSON)</Label>
+              <Textarea
+                value={editedSlide.chartDataText || JSON.stringify(editedSlide.chartData || [], null, 2)}
+                onChange={e => {
+                  const text = e.target.value;
+                  setEditedSlide(prev => ({ ...prev, chartDataText: text }));
+                }}
+                onBlur={e => {
+                  try {
+                    const chartData = JSON.parse(e.target.value);
+                    setEditedSlide(prev => ({ 
+                      ...prev, 
+                      chartData,
+                      chartDataText: undefined
+                    }));
+                  } catch (err) {
+                    // Keep the invalid text in chartDataText
+                  }
+                }}
+                placeholder={`[
+  {
+    "label": "Item 1",
+    "value": 30,
+    "color": "#ff0000"
+  }
+]`}
+                rows={10}
+              />
+            </div>
+          )}
+
+          {editedSlide.type === 'progress-grid' && (
+            <div className="space-y-4">
+              <Label>Progress Data (JSON)</Label>
+              <div className="text-sm text-muted-foreground mb-2">
+                Supported colors: bg-{'{color}'}-{'{shade}'} (e.g., bg-purple-500, bg-green-500, bg-blue-500)
+              </div>
+              <Textarea
+                value={editedSlide.progressDataText || JSON.stringify(editedSlide.progressData || [], null, 2)}
+                onChange={e => {
+                  const text = e.target.value;
+                  setEditedSlide(prev => ({ ...prev, progressDataText: text }));
+                }}
+                onBlur={e => {
+                  try {
+                    const progressData = JSON.parse(e.target.value);
+                    setEditedSlide(prev => ({ 
+                      ...prev, 
+                      progressData,
+                      progressDataText: undefined
+                    }));
+                  } catch (err) {
+                    // Keep the invalid text in progressDataText
+                  }
+                }}
+                placeholder={`[
+  {
+    "label": "Task 1",
+    "value": 75,
+    "color": "bg-purple-500",
+    "size": "md"
+  },
+  {
+    "label": "Task 2",
+    "value": 50,
+    "color": "bg-green-500",
+    "size": "md"
+  }
+]`}
+                rows={10}
               />
             </div>
           )}
@@ -154,100 +266,6 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
                 value={editedSlide.altText || ''}
                 onChange={e => setEditedSlide(prev => ({ ...prev, altText: e.target.value }))}
                 placeholder="Enter alt text"
-              />
-            </div>
-          )}
-
-          {editedSlide.type === 'markdown' && (
-            <div className="space-y-4">
-              <Label>Markdown Content</Label>
-              <Textarea
-                value={editedSlide.markdown || ''}
-                onChange={e => setEditedSlide(prev => ({ ...prev, markdown: e.target.value }))}
-                placeholder="Enter markdown content"
-                rows={10}
-              />
-            </div>
-          )}
-
-          {editedSlide.type === 'pie-chart' && (
-            <div className="space-y-4">
-              <Label>Chart Data (JSON)</Label>
-              <Textarea
-                value={editedSlide.chartDataText || JSON.stringify(editedSlide.chartData || [], null, 2)}
-                onChange={e => {
-                  const text = e.target.value;
-                  setEditedSlide(prev => ({ ...prev, chartDataText: text }));
-                }}
-                onBlur={e => {
-                  try {
-                    const chartData = JSON.parse(e.target.value);
-                    setEditedSlide(prev => ({ 
-                      ...prev, 
-                      chartData,
-                      chartDataText: undefined // Clear the temporary text
-                    }));
-                  } catch (err) {
-                    // Keep the invalid text in chartDataText
-                  }
-                }}
-                placeholder={`[
-                    {
-                        "label": "Item 1",
-                        "value": 30,
-                        "color": "#ff0000"
-                    }
-                    ]`}
-                rows={10}
-              />
-            </div>
-          )}
-
-          {editedSlide.type === 'progress-grid' && (
-            <div className="space-y-4">
-              <Label>Header</Label>
-              <Input
-                value={editedSlide.header || ''}
-                onChange={e => setEditedSlide(prev => ({ ...prev, header: e.target.value }))}
-                placeholder="Enter grid header"
-              />
-              <Label>Progress Data (JSON)</Label>
-              <div className="text-sm text-muted-foreground mb-2">
-                Supported colors: bg-{'{color}'}-{'{shade}'} (e.g., bg-purple-500, bg-green-500, bg-blue-500)
-              </div>
-              <Textarea
-                value={editedSlide.progressDataText || JSON.stringify(editedSlide.progressData || [], null, 2)}
-                onChange={e => {
-                  const text = e.target.value;
-                  setEditedSlide(prev => ({ ...prev, progressDataText: text }));
-                }}
-                onBlur={e => {
-                  try {
-                    const progressData = JSON.parse(e.target.value);
-                    setEditedSlide(prev => ({ 
-                      ...prev, 
-                      progressData,
-                      progressDataText: undefined // Clear the temporary text
-                    }));
-                  } catch (err) {
-                    // Keep the invalid text in progressDataText
-                  }
-                }}
-                placeholder={`[
-  {
-    "label": "Task 1",
-    "value": 75,
-    "color": "bg-purple-500",
-    "size": "md"
-  },
-  {
-    "label": "Task 2",
-    "value": 50,
-    "color": "bg-green-500",
-    "size": "md"
-  }
-]`}
-                rows={10}
               />
             </div>
           )}

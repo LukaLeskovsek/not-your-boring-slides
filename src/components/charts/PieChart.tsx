@@ -3,10 +3,20 @@ import type { PieChartData } from '@/types/presentation';
 
 interface PieChartProps {
   data: PieChartData[];
+  fontSize?: string;
 }
 
-export function PieChart({ data }: PieChartProps) {
+export function PieChart({ data, fontSize = 'md' }: PieChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const getFontSize = (size: string) => {
+    switch (size) {
+      case 'sm': return '12px';
+      case 'lg': return '16px';
+      case 'xl': return '18px';
+      default: return '14px';
+    }
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -41,7 +51,7 @@ export function PieChart({ data }: PieChartProps) {
       const labelX = 200 + Math.cos(labelAngle) * labelRadius;
       const labelY = 200 + Math.sin(labelAngle) * labelRadius;
 
-      ctx.font = '14px Inter';
+      ctx.font = `${getFontSize(fontSize)} Inter`;
       ctx.fillStyle = '#374151';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -49,7 +59,7 @@ export function PieChart({ data }: PieChartProps) {
 
       startAngle += sliceAngle;
     });
-  }, [data]);
+  }, [data, fontSize]);
 
   return (
     <div className="relative">

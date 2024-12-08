@@ -1,7 +1,7 @@
 {
   "documentName": "Discovery '24 Review",
   "settings": {
-    "fontSize": "16px",
+    "fontSize": "24px",
     "fontFamily": "Inter, sans-serif",
     "gradientBackground": {
       "from": "#a5f3fc",
@@ -32,24 +32,28 @@
       "id": "2",
       "type": "title-content",
       "header": "Agenda",
-      "content": "- Accomplishments\n- Key metric and observations\n- Challenges\n- Strategic Goals Check-In"
+      "content": "- Accomplishments\n- Key metric and observations\n- Challenges\n- Strategic Goals Check-In",
+      "fontSize": "xl"
     },
     {
       "id": "3",
       "type": "title-content",
       "header": "Accomplishments",
-      "content": "1. Worked with 10 clients\n2. Roughly converts into 500k of revenue\n3. La Merge of tribes happened one year ago 🙌\n4. Re-Engaged w/ eEnergy and able to prolong for next stage 🚀\n5. Objectives-driven engagement model → moved away from selling FTEs"
+      "content": "1. Worked with 10 clients\n2. Roughly converts into 500k of revenue\n3. La Merge of tribes happened one year ago 🙌\n4. Re-Engaged w/ eEnergy and able to prolong for next stage 🚀\n5. Objectives-driven engagement model → moved away from selling FTEs",
+      "fontSize": "xl"
     },
     {
       "id": "4",
       "type": "title-content",
       "header": "Key metric and observations",
-      "content": "TBD"
+      "content": "TBD",
+      "fontSize": "xl"
     },
     {
       "id": "5",
       "type": "title-content",
-      "header": "Challengees"
+      "header": "Challengees",
+      "fontSize": "md"
     },
     {
       "id": "6",
@@ -75,12 +79,14 @@
           "size": "2xl"
         }
       ],
-      "columns": 1
+      "columns": 1,
+      "fontSize": "lg"
     },
     {
       "id": "7",
       "type": "gif-header",
       "header": "That's a wrap!",
+      "fontSize": "lg",
       "effect": {
         "type": "confetti",
         "options": {
