@@ -51,19 +51,26 @@ function App() {
         body: JSON.stringify(newData),
       });
       
-      if (!response.ok) throw new Error('Failed to save presentation');
+      if (!response.ok) {
+        throw new Error('Failed to save presentation');
+      }
       
       // Update the local state after successful save
       setData(newData);
     } catch (err) {
       console.error('Failed to save presentation:', err);
-      // You might want to show an error toast here
+      // Add error handling - you might want to show a toast here
+      throw err; // Re-throw to handle in the component
     }
   };
 
   return (
     <BrowserRouter>
-      <PresentationProvider data={data} onSave={handleSave}>
+      <PresentationProvider 
+        data={data} 
+        onSave={handleSave}
+        isLoading={!data && !error}
+      >
         <AppContent />
       </PresentationProvider>
     </BrowserRouter>

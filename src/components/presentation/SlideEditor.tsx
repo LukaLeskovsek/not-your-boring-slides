@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
-import type { ISlide, SlideEffect } from '@/types/presentation';
+import type { ISlide, SlideEffect, SlideType, EffectType } from '@/types/presentation';
 
 interface SlideEditorProps {
   slide: ISlide;
@@ -30,7 +30,7 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
   const [editedSlide, setEditedSlide] = useState<ISlide>(slide);
   const [showEffectOptions, setShowEffectOptions] = useState(!!slide.effect);
 
-  const handleTypeChange = (type: ISlide['type']) => {
+  const handleTypeChange = (type: SlideType) => {
     setEditedSlide(prev => ({ ...prev, type }));
   };
 
@@ -173,7 +173,7 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
               <Label>Effect Type</Label>
               <Select
                 value={editedSlide.effect?.type || 'flying-emoji'}
-                onValueChange={type => handleEffectChange({ type } as SlideEffect)}
+                onValueChange={(type: EffectType) => handleEffectChange({ type })}
               >
                 <SelectTrigger>
                   <SelectValue />

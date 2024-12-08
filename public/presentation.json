@@ -20,9 +20,9 @@
       "effect": {
         "type": "flying-emoji",
         "options": {
-          "particleCount": 15,
+          "particleCount": 20,
           "emoji": "🚀",
-          "duration": 5,
+          "duration": 6.5,
           "fadeOut": 0.9
         }
       }

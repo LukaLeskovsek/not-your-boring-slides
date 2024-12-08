@@ -11,16 +11,27 @@ export interface ProgressBarData {
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
+export type SlideType = 
+  | 'header-only'
+  | 'title-content'
+  | 'image-only'
+  | 'gif-only'
+  | 'image-header'
+  | 'gif-header'
+  | 'pie-chart'
+  | 'progress-grid'
+  | 'markdown';
+
+export type EffectType = 'flying-emoji' | 'confetti';
+
 export interface SlideEffect {
-  type: 'confetti' | 'flying-emoji';
-  options?: {
+  type: EffectType;
+  options: {
     particleCount?: number;
-    spread?: number;
-    startVelocity?: number;
-    colors?: string[];
     emoji?: string;
     duration?: number;
     fadeOut?: number;
+    spread?: number;
   };
 }
 

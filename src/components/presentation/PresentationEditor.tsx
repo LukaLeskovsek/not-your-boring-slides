@@ -6,18 +6,22 @@ import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { SlideEditor } from './SlideEditor';
-import type { PresentationData, ISlide } from '@/types/presentation';
+import type { ISlide } from '@/types/presentation';
 import { cn } from '@/lib/utils';
+import { usePresentationContext } from '@/hooks/usePresentationContext';
 
-interface PresentationEditorProps {
-  data: PresentationData;
-  onSave: (data: PresentationData) => void;
-}
-
-export function PresentationEditor({ data, onSave }: PresentationEditorProps) {
-  const [presentationData, setPresentationData] = useState<PresentationData>(data);
+export function PresentationEditor() {
+  const { data: presentationData, updatePresentation, isLoading } = usePresentationContext();
   const [selectedSlideIndex, setSelectedSlideIndex] = useState<number | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!presentationData) {
+    return <div>No presentation data available</div>;
+  }
 
   const handleSlideSelect = (index: number) => {
     setSelectedSlideIndex(index);
@@ -27,12 +31,14 @@ export function PresentationEditor({ data, onSave }: PresentationEditorProps) {
   const handleSlideUpdate = (updatedSlide: ISlide) => {
     if (selectedSlideIndex === null) return;
 
-    setPresentationData(prev => ({
-      ...prev,
-      slides: prev.slides.map((slide, index) =>
-        index === selectedSlideIndex ? updatedSlide : slide
-      ),
-    }));
+    const updatedSlides = presentationData.slides.map((slide, index) =>
+      index === selectedSlideIndex ? updatedSlide : slide
+    );
+
+    updatePresentation({
+      ...presentationData,
+      slides: updatedSlides,
+    });
     setIsEditing(false);
   };
 
@@ -42,57 +48,57 @@ export function PresentationEditor({ data, onSave }: PresentationEditorProps) {
       header: 'New Slide',
     };
 
-    setPresentationData(prev => ({
-      ...prev,
-      slides: [...prev.slides, newSlide],
-    }));
+    updatePresentation({
+      ...presentationData,
+      slides: [...presentationData.slides, newSlide],
+    });
   };
 
   const handleRemoveSlide = (index: number) => {
-    setPresentationData(prev => ({
-      ...prev,
-      slides: prev.slides.filter((_, i) => i !== index),
-    }));
+    updatePresentation({
+      ...presentationData,
+      slides: presentationData.slides.filter((_, i) => i !== index),
+    });
   };
 
-  const handleSettingsChange = (field: keyof PresentationData['settings'], value: string) => {
-    setPresentationData(prev => ({
-      ...prev,
+  const handleSettingsChange = (field: keyof typeof presentationData.settings, value: string) => {
+    updatePresentation({
+      ...presentationData,
       settings: {
-        ...prev.settings,
+        ...presentationData.settings,
         [field]: value,
       },
-    }));
+    });
   };
 
   const handleGradientChange = (field: 'from' | 'to', value: string) => {
-    setPresentationData(prev => ({
-      ...prev,
+    updatePresentation({
+      ...presentationData,
       settings: {
-        ...prev.settings,
+        ...presentationData.settings,
         gradientBackground: {
-          ...prev.settings.gradientBackground,
+          ...presentationData.settings.gradientBackground,
           [field]: value,
         },
       },
-    }));
+    });
   };
 
-  const handleFooterChange = (field: keyof PresentationData['settings']['footer'], value: string) => {
-    setPresentationData(prev => ({
-      ...prev,
+  const handleFooterChange = (field: keyof typeof presentationData.settings.footer, value: string) => {
+    updatePresentation({
+      ...presentationData,
       settings: {
-        ...prev.settings,
+        ...presentationData.settings,
         footer: {
-          ...prev.settings.footer,
+          ...presentationData.settings.footer,
           [field]: value,
         },
       },
-    }));
+    });
   };
 
   const handleSavePresentation = () => {
-    onSave(presentationData);
+    updatePresentation(presentationData);
   };
 
   return (
@@ -102,7 +108,7 @@ export function PresentationEditor({ data, onSave }: PresentationEditorProps) {
         <div className="space-y-4 mb-4">
           <Input
             value={presentationData.documentName}
-            onChange={e => setPresentationData(prev => ({ ...prev, documentName: e.target.value }))}
+            onChange={e => updatePresentation({ ...presentationData, documentName: e.target.value })}
             placeholder="Presentation Name"
           />
           <Button onClick={handleAddSlide} className="w-full">
