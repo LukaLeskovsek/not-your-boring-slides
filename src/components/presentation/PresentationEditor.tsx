@@ -22,6 +22,13 @@ export function PresentationEditor() {
     return <div>No presentation data available</div>;
   }
 
+  const renumberSlides = (slides: ISlide[]): ISlide[] => {
+    return slides.map((slide, index) => ({
+      ...slide,
+      id: String(index + 1)
+    }));
+  };
+
   const handleSlideSelect = (id: string) => {
     setSelectedSlideId(id);
   };
@@ -35,28 +42,30 @@ export function PresentationEditor() {
 
     updatePresentation({
       ...presentationData,
-      slides: updatedSlides,
+      slides: renumberSlides(updatedSlides),
     });
   };
 
   const handleAddSlide = () => {
     const newSlide: ISlide = {
-      id: crypto.randomUUID(),
+      id: String(presentationData.slides.length + 1),
       type: 'header-only',
       header: 'New Slide',
     };
 
+    const updatedSlides = [...presentationData.slides, newSlide];
     updatePresentation({
       ...presentationData,
-      slides: [...presentationData.slides, newSlide],
+      slides: renumberSlides(updatedSlides),
     });
     setSelectedSlideId(newSlide.id);
   };
 
   const handleRemoveSlide = (id: string) => {
+    const filteredSlides = presentationData.slides.filter(slide => slide.id !== id);
     updatePresentation({
       ...presentationData,
-      slides: presentationData.slides.filter(slide => slide.id !== id),
+      slides: renumberSlides(filteredSlides),
     });
     if (selectedSlideId === id) {
       setSelectedSlideId(null);
