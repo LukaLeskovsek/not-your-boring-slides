@@ -1,5 +1,5 @@
 {
-  "documentName": "My Presentation",
+  "documentName": "Discovery '24 Review",
   "settings": {
     "fontSize": "16px",
     "fontFamily": "Inter, sans-serif",
@@ -16,7 +16,7 @@
   "slides": [
     {
       "type": "header-only",
-      "header": "Discovery 2024 Review",
+      "header": "Discovery 2024 Review!",
       "effect": {
         "type": "flying-emoji",
         "options": {
@@ -98,9 +98,21 @@
       "type": "pie-chart",
       "header": "Market Share Distribution",
       "chartData": [
-        { "label": "Product A", "value": 50, "color": "#3B82F6" },
-        { "label": "Product B", "value": 50, "color": "#10B981" },
-        { "label": "Others", "value": 5, "color": "#6B7280" }
+        {
+          "label": "Product A",
+          "value": 50,
+          "color": "#3B82F6"
+        },
+        {
+          "label": "Product B",
+          "value": 50,
+          "color": "#10B981"
+        },
+        {
+          "label": "Others",
+          "value": 5,
+          "color": "#6B7280"
+        }
       ],
       "effect": {
         "type": "flying-emoji",
@@ -116,12 +128,42 @@
       "type": "progress-grid",
       "header": "Q1 Performance Metrics",
       "progressData": [
-        { "label": "Professional execution", "value": 75, "color": "bg-amber-400", "size": "xl" },
-        { "label": "Customer satisfaction", "value": 92, "color": "bg-green-500", "size": "lg" },
-        { "label": "Team productivity", "value": 88, "color": "bg-blue-500", "size": "md" },
-        { "label": "Innovation score", "value": 95, "color": "bg-purple-500", "size": "sm" },
-        { "label": "Market growth", "value": 82, "color": "bg-rose-500", "size": "lg" },
-        { "label": "Revenue targets", "value": 78, "color": "bg-cyan-500", "size": "xl" }
+        {
+          "label": "Professional execution",
+          "value": 75,
+          "color": "bg-amber-400",
+          "size": "xl"
+        },
+        {
+          "label": "Customer satisfaction",
+          "value": 92,
+          "color": "bg-green-500",
+          "size": "lg"
+        },
+        {
+          "label": "Team productivity",
+          "value": 88,
+          "color": "bg-blue-500",
+          "size": "md"
+        },
+        {
+          "label": "Innovation score",
+          "value": 95,
+          "color": "bg-purple-500",
+          "size": "sm"
+        },
+        {
+          "label": "Market growth",
+          "value": 82,
+          "color": "bg-rose-500",
+          "size": "lg"
+        },
+        {
+          "label": "Revenue targets",
+          "value": 78,
+          "color": "bg-cyan-500",
+          "size": "xl"
+        }
       ],
       "columns": 2,
       "effect": {
@@ -142,9 +184,14 @@
         "options": {
           "particleCount": 80,
           "spread": 60,
-          "colors": ["#87CEEB", "#98FB98", "#DDA0DD", "#F0E68C"]
+          "colors": [
+            "#87CEEB",
+            "#98FB98",
+            "#DDA0DD",
+            "#F0E68C"
+          ]
         }
       }
     }
   ]
-} 
+}
