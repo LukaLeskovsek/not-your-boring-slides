@@ -58,6 +58,14 @@
     },
     {
       "id": "6",
+      "type": "quote",
+      "header": "Corpo Quote",
+      "quote": "We’re a corporation in a startup’s clothing, claiming agility and innovation, while our behaviour contradicts that spirit.",
+      "fontSize": "lg",
+      "author": "Luka"
+    },
+    {
+      "id": "7",
       "type": "progress-grid",
       "header": "2024 strategic goals - Dec Check-In",
       "progressData": [
@@ -84,18 +92,18 @@
       "fontSize": "md"
     },
     {
-      "id": "7",
+      "id": "8",
       "type": "gif-header",
       "header": "That's a wrap!",
       "fontSize": "lg",
       "effect": {
         "type": "confetti",
         "options": {
-          "particleCount": 150,
+          "particleCount": 190,
           "emoji": "✨",
           "duration": 3,
           "fadeOut": 0.7,
-          "spread": 100
+          "spread": 150
         }
       },
       "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3RtZnV5eWF6b3MxOHR5dWFtZmY0ajNhbzB6NGQyMm15MjhibG44ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DnMMGxEvniha7CvASq/giphy.gif",

@@ -25,6 +25,7 @@ const SLIDE_TYPES = [
   { value: 'pie-chart', label: 'Pie Chart' },
   { value: 'progress-grid', label: 'Progress Grid' },
   { value: 'markdown', label: 'Markdown' },
+  { value: 'quote', label: 'Quote' },
 ];
 
 const FontSizeSelector = ({ value, onValueChange }: { value: string; onValueChange: (value: string) => void }) => (
@@ -266,6 +267,32 @@ export function SlideEditor({ slide, onSave }: SlideEditorProps) {
                 value={editedSlide.altText || ''}
                 onChange={e => setEditedSlide(prev => ({ ...prev, altText: e.target.value }))}
                 placeholder="Enter alt text"
+              />
+            </div>
+          )}
+
+          {editedSlide.type === 'quote' && (
+            <div className="space-y-4">
+              <Label>Quote</Label>
+               {/*include header field  */}
+               <Input
+                value={editedSlide.header || ''}
+                onChange={e => setEditedSlide(prev => ({ ...prev, header: e.target.value }))}
+                placeholder="Enter header"
+              />
+
+              <Textarea
+                value={editedSlide.quote || ''}
+                onChange={e => setEditedSlide(prev => ({ ...prev, quote: e.target.value }))}
+                placeholder="Enter quote"
+                rows={5}
+              />
+
+              <Label>Author</Label>
+              <Input
+                value={editedSlide.author || ''}
+                onChange={e => setEditedSlide(prev => ({ ...prev, author: e.target.value }))}
+                placeholder="Enter author"
               />
             </div>
           )}

@@ -260,6 +260,47 @@ export function MarkdownSlide({ markdown, fontSize }: { markdown: string; fontSi
   );
 }
 
+export function QuoteSlide({
+  quote,
+  author,
+  fontSize,
+}: {
+  quote: string;
+  author?: string;
+  fontSize?: string;
+}) {
+  const sizes = getFontSizeClass(fontSize);
+  return (
+    <div className="flex items-center justify-center h-full">
+      <figure className="text-center max-w-4xl relative">
+        <blockquote className="relative">
+          <span className="absolute left-1/2 -translate-x-1/2 -top-16 text-gray-200 text-9xl">"</span>
+          <p className={cn("relative z-10 italic font-serif", {
+            'text-2xl': fontSize === 'sm',
+            'text-3xl': fontSize === 'md' || !fontSize,
+            'text-4xl': fontSize === 'lg',
+            'text-5xl': fontSize === 'xl',
+          })}>
+            {quote}
+          </p>
+        </blockquote>
+        {author && (
+          <figcaption className="mt-6">
+            <span className={cn("font-semibold text-gray-700", {
+              'text-lg': fontSize === 'sm',
+              'text-xl': fontSize === 'md' || !fontSize,
+              'text-2xl': fontSize === 'lg',
+              'text-3xl': fontSize === 'xl',
+            })}>
+              — {author}
+            </span>
+          </figcaption>
+        )}
+      </figure>
+    </div>
+  );
+}
+
 export function Slide({ slide, className }: SlideProps) {
   const slideContent = () => {
     switch (slide.type) {
@@ -316,6 +357,14 @@ export function Slide({ slide, className }: SlideProps) {
         );
       case 'markdown':
         return <MarkdownSlide markdown={slide.markdown!} fontSize={slide.fontSize} />;
+      case 'quote':
+        return (
+          <QuoteSlide
+            quote={slide.quote!}
+            author={slide.author}
+            fontSize={slide.fontSize}
+          />
+        );
       default:
         return <div>Unknown slide type</div>;
     }

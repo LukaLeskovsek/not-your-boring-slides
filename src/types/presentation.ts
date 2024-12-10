@@ -20,7 +20,8 @@ export type SlideType =
   | 'gif-header'
   | 'pie-chart'
   | 'progress-grid'
-  | 'markdown';
+  | 'markdown'
+  | 'quote';
 
 export type EffectType = 'flying-emoji' | 'confetti';
 
@@ -51,6 +52,8 @@ export interface ISlide {
   chartDataText?: string;
   progressDataText?: string;
   fontSize?: string;
+  quote?: string;
+  author?: string;
 }
 
 export interface PresentationSettings {
