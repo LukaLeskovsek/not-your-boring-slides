@@ -42,7 +42,7 @@
       "type": "gif-header",
       "header": "Your Story Matters Most",
       "content": "Stop wrestling with layouts and pixel-perfect positioning. Write in Markdown, pick a slide type, and let us handle the rest.",
-      "fontSize": "lg",
+      "fontSize": "xl",
       "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW9nN2p6aHdwMWJqd3M2Z3FiMXlrZnU0YmlwMmZpeWh0Y2phOHFhZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/X1A3u9DMUcDx6/giphy.gif"
     },
     {
@@ -66,15 +66,11 @@
           "value": 100
         },
         {
-          "label": "Live Charts",
-          "value": 100
-        },
-        {
           "label": "Animations",
           "value": 100
         }
       ],
-      "fontSize": "sm"
+      "fontSize": "md"
     },
     {
       "id": "6",
@@ -97,7 +93,7 @@
           "color": "#F59E0B"
         }
       ],
-      "fontSize": "sm"
+      "fontSize": "md"
     },
     {
       "id": "7",
@@ -114,7 +110,7 @@
           "fadeOut": 0.7
         }
       },
-      "fontSize": "lg"
+      "fontSize": "xl"
     },
     {
       "id": "8",
