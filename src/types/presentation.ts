@@ -4,6 +4,7 @@ export interface PieChartData {
   color: string;
 }
 
+
 export interface ProgressBarData {
   label: string;
   value: number;

@@ -1,10 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import presentationRoutes from './src/server/routes/presentation.js';
-import { logger, requestLogger } from './src/server/middleware/logger.js';
+import presentationRoutes from './routes/presentation';
+import { logger, requestLogger } from './middleware/logger';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +17,7 @@ app.use(express.json());
 app.use(requestLogger);
 
 // Error logging
-app.use((err, req, res, next) => {
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
   logger.error({
     err,
     req: {

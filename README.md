@@ -1,8 +1,8 @@
-# Presentation Viewer
+# Slides Maker
 
-A modern, interactive presentation viewer built with React and TypeScript. Create beautiful presentations with various slide types, animations, and effects.
+A modern, interactive presentation creator and viewer built with React, TypeScript, and Express. Create beautiful presentations with various slide types, animations, and effects.
 
-## Features
+## 🌟 Features
 
 - 🎨 Multiple slide types:
   - Header only
@@ -30,7 +30,71 @@ A modern, interactive presentation viewer built with React and TypeScript. Creat
   - Adaptive scaling
   - Mobile-friendly
 
-## Usage
+## 🏗️ Architecture
+
+The project follows a modern full-stack architecture:
+
+```
+src/
+├── components/     # React components
+├── hooks/         # Custom React hooks
+├── types/         # TypeScript type definitions
+├── pages/         # Route pages
+├── server/        # Express backend
+│   ├── controllers/
+│   ├── middleware/
+│   ├── routes/
+│   └── repositories/
+├── services/      # API services
+├── lib/          # Shared utilities
+└── data/         # Data models
+```
+
+## 🛠️ Tech Stack
+
+- **Frontend**:
+  - React 18
+  - TypeScript
+  - TailwindCSS
+  - Radix UI Components
+  - React Router
+  - Zustand (State Management)
+  - React Hook Form
+  - React Beautiful DnD
+  - Recharts
+
+- **Backend**:
+  - Express
+  - TypeScript
+  - Pino Logger
+  - Rate Limiting
+  - CORS
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/slides-maker.git
+cd slides-maker
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start development servers (frontend + backend):
+```bash
+npm run dev
+```
+
+4. Build for production:
+```bash
+npm run build        # Build frontend
+npm run build:server # Build backend
+```
+
+## 💻 Usage
 
 ### Basic Setup
 
@@ -99,12 +163,6 @@ function App() {
 - **Advanced Security**
 
 > "Innovation is the outcome of a habit, not a random act."
-
-\`\`\`javascript
-function example() {
-  return 'Hello, World!';
-}
-\`\`\`
 `,
   effect: {
     type: 'flying-emoji',
@@ -127,7 +185,7 @@ function example() {
       label: 'Professional execution', 
       value: 75, 
       color: 'bg-amber-400',
-      size: 'xl' // Available sizes: 'sm', 'md', 'lg', 'xl'
+      size: 'xl'
     },
     { 
       label: 'Customer satisfaction', 
@@ -136,7 +194,7 @@ function example() {
       size: 'lg'
     }
   ],
-  columns: 2 // Control the grid layout (1-4 columns)
+  columns: 2
 }
 ```
 
@@ -144,25 +202,61 @@ function example() {
 ```typescript
 {
   type: 'pie-chart',
-  header: 'Market Share Distribution',
+  header: 'Revenue Distribution',
   chartData: [
-    { label: 'Product A', value: 50, color: '#3B82F6' },
-    { label: 'Product B', value: 30, color: '#10B981' }
-  ]
+    {
+      label: 'Item 1',
+      value: 30,
+      color: 'hsl(var(--chart-1))'  // Using theme colors
+    },
+    {
+      label: 'Item 2',
+      value: 25,
+      color: 'hsl(var(--chart-2))'
+    },
+    {
+      label: 'Item 3',
+      value: 20,
+      color: 'hsl(var(--chart-3))'
+    }
+  ],
+  fontSize: 'md',  // Optional: 'sm' | 'md' | 'lg' | 'xl'
+  effect: {        // Optional animation effect
+    type: 'flying-emoji',
+    options: {
+      particleCount: 10,
+      emoji: '📊',
+      duration: 3,
+      fadeOut: 0.7
+    }
+  }
 }
 ```
 
-## Progress Bar Sizes
+The pie chart component automatically:
+- Calculates percentages from the provided values
+- Draws proportional segments
+- Positions labels with percentages around the chart
+- Uses the Inter font family
+- Supports different font sizes:
+  - `sm`: 12px
+  - `md`: 14px (default)
+  - `lg`: 16px
+  - `xl`: 18px
 
-The progress bars can be customized with four different sizes:
+You can use either HSL theme colors (`hsl(var(--chart-1))`) or hex colors (`#3B82F6`).
 
+## 🎨 Customization
+
+### Progress Bar Sizes
+
+Available sizes for progress bars:
 - `sm`: Small (2px height)
 - `md`: Medium (4px height, default)
 - `lg`: Large (6px height)
 - `xl`: Extra Large (8px height)
 
-Each size also adjusts the font size of the labels appropriately:
-
+Font sizes are automatically adjusted based on the progress bar size:
 ```typescript
 const sizeClasses = {
   sm: 'text-xs',   // Extra small text
@@ -172,28 +266,21 @@ const sizeClasses = {
 };
 ```
 
-## Development
+## 🤝 Contributing
 
-1. Install dependencies:
-```bash
-npm install
-```
+We welcome contributions! Here's how you can help:
 
-2. Start development server:
-```bash
-npm run dev
-```
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-3. Build for production:
-```bash
-npm run build
-```
+Please make sure to update tests as appropriate and follow the existing code style.
 
-## Contributing
+## 📝 License
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
+This project is licensed under the MIT License - see below for details:
 
 MIT License
 

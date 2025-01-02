@@ -26,5 +26,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "types": ["node"],
+  "exclude": ["shimmer"]
 }

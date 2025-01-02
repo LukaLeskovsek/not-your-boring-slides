@@ -1,113 +1,144 @@
 {
-  "documentName": "Discovery '24 Review",
+  "documentName": "Not Your Boring Slides",
   "settings": {
-    "fontSize": "24px",
+    "fontSize": "18px",
     "fontFamily": "Inter, sans-serif",
     "gradientBackground": {
-      "from": "#a5f3fc",
-      "to": "#fbcfe8"
+      "from": "#FFD700",
+      "to": "#FF4500"
     },
     "footer": {
       "logoUrl": "/logo.svg",
-      "dateFormat": "MMM yyyy"
+      "dateFormat": "yyyy"
     },
-    "date": "2024-03-19"
+    "date": "2025-01-02"
   },
   "slides": [
     {
       "id": "1",
       "type": "header-only",
-      "header": "Discovery EOY Review",
+      "header": "Not Your Boring Slides",
       "effect": {
         "type": "flying-emoji",
         "options": {
-          "particleCount": 16,
-          "emoji": "🚀🌖",
-          "duration": 5.5,
-          "fadeOut": 0.7
+          "particleCount": 18,
+          "emoji": "🎯🚀✨",
+          "duration": 4.5,
+          "fadeOut": 0.5
         }
-      }
+      },
+      "fontSize": "lg"
     },
     {
       "id": "2",
-      "type": "title-content",
-      "header": "Agenda",
-      "content": "- Accomplishments\n- Key metric and observations\n- Challenges\n- Strategic Goals Check-In",
-      "fontSize": "xl"
+      "type": "markdown",
+      "header": "Because life's too short for death by PowerPoint",
+      "content": "\t•\tPresentations don’t have to be dull and tedious.\n\t•\tElevate your storytelling with slides that captivate and engage.\n\t•\tSay goodbye to boring templates and hello to creativity!\n\t•\tVisual Elements: Flying emojis 🎯🚀✨",
+      "fontSize": "lg",
+      "markdown": "# Because life's too short for death by PowerPoint\n- Presentations don’t have to be dull and tedious.\n- Elevate your storytelling with slides that captivate and engage.\n- Say goodbye to boring templates and hello to creativity!\n- Visual Elements: Flying emojis 🎯🚀✨"
     },
     {
       "id": "3",
-      "type": "title-content",
-      "header": "Accomplishments",
-      "content": "1. Worked with 10 clients\n2. Roughly converts into 500k of revenue\n3. La Merge of tribes happened one year ago 🙌\n4. Re-Engaged w/ eEnergy and able to prolong for next stage 🚀\n5. Objectives-driven engagement model → moved away from selling FTEs",
-      "fontSize": "xl"
+      "type": "gif-header",
+      "header": "Your Story Matters Most",
+      "content": "Stop wrestling with layouts and pixel-perfect positioning. Write in Markdown, pick a slide type, and let us handle the rest.",
+      "fontSize": "lg",
+      "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW9nN2p6aHdwMWJqd3M2Z3FiMXlrZnU0YmlwMmZpeWh0Y2phOHFhZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/X1A3u9DMUcDx6/giphy.gif"
     },
     {
       "id": "4",
-      "type": "title-content",
-      "header": "Key metric and observations",
-      "content": "- Margin - Goal is 20%\n- Rough Year behind us\n- Aiming first to get to 0% and slowly to 20%",
-      "fontSize": "xl"
+      "type": "markdown",
+      "header": "Just Write Markdown",
+      "markdown": "# Simple, Powerful Content Creation\n## The Power Of Markdown\n- Use Markdown to transform your ideas into polished slides effortlessly.\n- No design skills? No problem! Our platform takes care of formatting and layout automatically.\n- Save time, stay productive, and focus entirely on your content.",
+      "fontSize": "lg"
     },
     {
       "id": "5",
-      "type": "title-content",
-      "header": "Challengees",
-      "fontSize": "lg",
-      "content": "1. Initial engagement - takes time to identify the initial-really-impactful engagement; low-price to get through the door; high-risk as there is no guarantee for longer and better margin deal\n2. Type of clients — Discovery in our old definition of offering needs to be redefined\n3. Client expectations are at an all-time high. Time to production is shorter than ever. High-quality, excellent UX/UI."
+      "type": "progress-grid",
+      "header": "Packed with Powerful Features",
+      "progressData": [
+        {
+          "label": "Smart Layouts",
+          "value": 100
+        },
+        {
+          "label": "Auto-Magic Design",
+          "value": 100
+        },
+        {
+          "label": "Live Charts",
+          "value": 100
+        },
+        {
+          "label": "Animations",
+          "value": 100
+        }
+      ],
+      "fontSize": "sm"
     },
     {
       "id": "6",
-      "type": "quote",
-      "header": "Corpo Quote",
-      "quote": "We’re a corporation in a startup’s clothing, claiming agility and innovation, while our behaviour contradicts that spirit.",
-      "fontSize": "lg",
-      "author": "Luka"
+      "type": "pie-chart",
+      "header": "Pie Chart",
+      "chartData": [
+        {
+          "label": "Product A",
+          "value": 35,
+          "color": "#3B32F6"
+        },
+        {
+          "label": "Product B",
+          "value": 25,
+          "color": "#10B981"
+        },
+        {
+          "label": "Product C",
+          "value": 20,
+          "color": "#F59E0B"
+        }
+      ],
+      "fontSize": "sm"
     },
     {
       "id": "7",
-      "type": "progress-grid",
-      "header": "2024 strategic goals - Dec Check-In",
-      "progressData": [
-        {
-          "label": "Quality Talent",
-          "value": 70,
-          "color": "bg-purple-500",
-          "size": "2xl"
-        },
-        {
-          "label": "Professional Execution",
-          "value": 70,
-          "color": "bg-green-500",
-          "size": "2xl"
-        },
-        {
-          "label": "Strategic hedge for startups",
-          "value": 30,
-          "color": "bg-blue-500",
-          "size": "2xl"
+      "type": "quote",
+      "header": "What Users Say",
+      "quote": "Because life's too short for death by PowerPoint!",
+      "author": "Not Your Boring Slides",
+      "effect": {
+        "type": "flying-emoji",
+        "options": {
+          "particleCount": 10,
+          "emoji": "✨",
+          "duration": 3,
+          "fadeOut": 0.7
         }
-      ],
-      "columns": 1,
-      "fontSize": "md"
+      },
+      "fontSize": "lg"
     },
     {
       "id": "8",
+      "type": "markdown",
+      "header": "New Slide",
+      "markdown": "## Why Open Source Matters  \n\n- **Freedom to Innovate:** Access to the source code means endless possibilities to modify and improve.  \n- **Community-Driven:** Join a global network of developers contributing to a shared vision of better presentations.  \n- **Transparency and Trust:** Our code is open for review, ensuring the highest standards of security and performance.  \n\n### How to Get Involved  \n- **Star us on GitHub 🌟**\n- **Fork and Contribute 🤝**: Submit pull requests or report issues.  \n- **Spread the Word 📢**: Help others discover the power of open-source slides.  \n\n### Built for the Community, By the Community  \nTogether, we’re creating a tool that saves time, inspires creativity, and helps everyone tell their story."
+    },
+    {
+      "id": "9",
       "type": "gif-header",
-      "header": "That's a wrap!",
-      "fontSize": "lg",
+      "header": "Not your boring slides",
+      "fontSize": "sm",
       "effect": {
         "type": "confetti",
         "options": {
-          "particleCount": 190,
+          "particleCount": 200,
           "emoji": "✨",
-          "duration": 3,
-          "fadeOut": 0.7,
-          "spread": 150
+          "duration": 5,
+          "fadeOut": 1.5,
+          "spread": 100
         }
       },
-      "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3RtZnV5eWF6b3MxOHR5dWFtZmY0ajNhbzB6NGQyMm15MjhibG44ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DnMMGxEvniha7CvASq/giphy.gif",
-      "altText": "To the moon"
+      "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXRscmp4dzV4dmsxdXdiZnNkcng1eWtyZnR1enVleDI0N3FoczYzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4qsokBIDFxwYAgAllg/giphy.gif",
+      "altText": "Slide creation animation"
     }
   ]
 }

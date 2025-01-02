@@ -11,14 +11,27 @@ function App() {
 
   useEffect(() => {
     const loadPresentation = async () => {
+      console.log('[App] Starting to load presentation');
       try {
         const response = await fetch('/api/presentation');
-        if (!response.ok) throw new Error('Failed to load presentation');
+        console.log('[App] Fetch response status:', response.status);
+        
+        if (!response.ok) {
+          console.error('[App] Failed to load presentation - HTTP Error:', response.status);
+          const errorText = await response.text();
+          console.error('[App] Error response body:', errorText);
+          throw new Error('Failed to load presentation');
+        }
+        
         const presentationData = await response.json();
+        console.log('[App] Successfully loaded presentation:', {
+          documentName: presentationData.documentName,
+          slideCount: presentationData.slides.length
+        });
         setData(presentationData);
       } catch (err) {
+        console.error('[App] Error loading presentation:', err);
         setError('Failed to load presentation data');
-        console.error(err);
       }
     };
 
@@ -42,6 +55,7 @@ function App() {
   }
 
   const handleSave = async (newData: PresentationData) => {
+    console.log('[App] Starting to save presentation');
     try {
       const response = await fetch('/api/presentation', {
         method: 'POST',
@@ -51,16 +65,20 @@ function App() {
         body: JSON.stringify(newData),
       });
       
+      console.log('[App] Save response status:', response.status);
+      
       if (!response.ok) {
+        console.error('[App] Failed to save presentation - HTTP Error:', response.status);
+        const errorText = await response.text();
+        console.error('[App] Error response body:', errorText);
         throw new Error('Failed to save presentation');
       }
       
-      // Update the local state after successful save
+      console.log('[App] Successfully saved presentation');
       setData(newData);
     } catch (err) {
-      console.error('Failed to save presentation:', err);
-      // Add error handling - you might want to show a toast here
-      throw err; // Re-throw to handle in the component
+      console.error('[App] Error saving presentation:', err);
+      throw err;
     }
   };
 
