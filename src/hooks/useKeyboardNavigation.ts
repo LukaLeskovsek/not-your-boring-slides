@@ -16,7 +16,7 @@ export function useKeyboardNavigation() {
           break;
         case 'ArrowRight':
         case ' ': // Spacebar
-          if (currentSlideIndex < data.slides.length - 1) {
+          if (data && currentSlideIndex < data.slides.length - 1) {
             setCurrentSlideIndex(currentSlideIndex + 1);
           }
           // Prevent page scroll when using spacebar

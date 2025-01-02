@@ -135,6 +135,12 @@
       },
       "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXRscmp4dzV4dmsxdXdiZnNkcng1eWtyZnR1enVleDI0N3FoczYzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4qsokBIDFxwYAgAllg/giphy.gif",
       "altText": "Slide creation animation"
+    },
+    {
+      "id": "10",
+      "type": "gif-only",
+      "header": "New Slide",
+      "gifUrl": "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3NzOTd6cDVqMHh1c283cXB2ZHA0aWhwMGs3dnAwZHRoaGQ3M2V1YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x4O0fjpQfoBZS/giphy.gif"
     }
   ]
 }

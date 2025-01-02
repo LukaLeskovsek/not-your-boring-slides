@@ -88,7 +88,7 @@ export function GifOnlySlide({
       <img
         src={gifUrl}
         alt={altText}
-        className="max-h-full max-w-full object-contain rounded-lg"
+        className="h-[80%] object-contain rounded-lg"
       />
     </div>
   );
@@ -139,7 +139,7 @@ export function GifHeaderSlide({
         <img
           src={gifUrl}
           alt={altText}
-          className="max-h-full max-w-full object-contain rounded-lg"
+          className="h-[80%] object-contain rounded-lg"
         />
       </div>
     </div>
